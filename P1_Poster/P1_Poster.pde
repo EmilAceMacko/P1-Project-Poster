@@ -3,10 +3,10 @@
     Resolution for development: 540 x 960 (the full resolution is 2.0x this resolution.).
 */
 
-public final float S = 1.0; // The global scale value for all drawing ("final" means it can't be changed when the program runs!)
+final float S = 1.0; // The global scale value for all drawing ("final" means it can't be changed when the program runs!)
 // This means EVERYTHING DRAWN must have its coordinates multiplied by 'S'! Otherwise it will not scale when we change S to 2!
 
-
+// Page:
 int page = 1;
 int pageMin = 1;
 int pageMax = 5;
@@ -17,9 +17,14 @@ float dotRadius;
 
 // Side buttons:
 SideButton buttonR, buttonL;
-
 // Images:
 PImage images[];
+// Colors:
+color colors[] = {
+  #000000, // Black
+  #FFFFFF, // White
+  
+};
 
 
 // Mouse click variables:
@@ -61,15 +66,15 @@ void setup()
 }
 
 
-void mousePressed()
+void mousePressed() // This function runs for every frame where a mouse button is being held down.
 {
-  if(!clickHold) clickStart = true;
-  clickHold = true;
+  if(!clickHold) clickStart = true; // If we weren't already holding the button, then this is the first frame of the click/hold, so mark clickStart as true!
+  clickHold = true; // Also mark clickHold as true, regardless of whether this is the beginning of the click/hold.
 }
-void mouseReleased()
+void mouseReleased() // This function runs only for the frame where a mouse button is released.
 {
-  clickEnd = true;
-  clickHold = false;
+  clickEnd = true; // This is the end of the click/hold, so mark clickEnd as true.
+  clickHold = false; // And mark clickHold as false, since we're no longer click-holding.
 }
 
 
@@ -144,7 +149,8 @@ void draw()
   }
   
   
-  // Reset click variables:
-  clickStart = false;
-  clickEnd = false;
+  // Reset click variables: (We're doing this at the end of the draw function to clean up these one-time click variables for the next frame! By clean up, I mean marking them as false)
+  clickStart = false; // clickStart should only be true for the one frame where the click/hold begins, so mark it as false. If it WERE true before, then it has already had 1 frame to be true by now!
+  clickEnd = false; // Same goes for clickEnd, it should only be true for one frame (and not multiple frames in a row).
+  // clickHold is the ONLY one of these three variables that gets to be true for multiple frames at a time, so this variable is NOT marked false here. It's only ever marked false in the clickReleased() function above!
 }
