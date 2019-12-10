@@ -8,7 +8,7 @@ final float S = 1.0; // The global scale value for all drawing ("final" means it
 // This goes EXCEPT for when the number is directly factoring the width/height variables!
 
 // Page:
-int page = 5; // The current page being viewed.
+int page = 1; // The current page being viewed.
 int pageMin = 1; // The minimum page number that the user can go to.
 int pageMax = 5; // The maximum page number that the user can go to.
 
