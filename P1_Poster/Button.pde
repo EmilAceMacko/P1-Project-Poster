@@ -1,5 +1,6 @@
-// The class "Button" is an abstract class, because it can't be created directly as an instance. But other classes can use this class as a template if they need the properties of a Button!
-abstract class Button
+// The class "Button" is a basic button class that isn't meant to exist on its own. But other button classes can use this class as a template if they need the properties of a Button!
+// This was made in case we needed different types of buttons doing different things.
+class Button
 {
   float x, y, w, h;
   int shape; // The shape of the button. 0 == Square, and 1 == Circle (though actually, ANY other value than zero is considered a circle!)
@@ -17,11 +18,11 @@ abstract class Button
   void update()
   {
     // If the mouse is overlapping the button, AND the mouse button is being held:
-    if(collision(mouseX, mouseY) && clickHold)
+    if(collision(mouseX, mouseY) && mousePressed)
     {
-      down = true;
+      down = true; // Button is down!
     }
-    else down = false;
+    else down = false; // Button is not down!
   }
   
   // This is a collision function that returns a boolean, either true or false. This function belongs to this class Button, but any of this class children can call it with "super.collision(xM, yM)" !
